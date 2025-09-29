@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { Suspense, useState, useEffect } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useData } from '@/contexts/DataContext';
 import { useAuth } from '@/contexts/AuthContext';
@@ -8,7 +8,7 @@ import AuthLayout from '@/components/AuthLayout';
 import Link from 'next/link';
 import { Delivery } from '@/types';
 
-export default function DeliveryStatusPage() {
+function DeliveryStatusContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const { getDelivery, updateDeliveryStatus, deliveries } = useData();
@@ -118,7 +118,7 @@ export default function DeliveryStatusPage() {
                 placeholder="Enter tracking number (e.g., TRK-001-2024)"
                 value={trackingInput}
                 onChange={(e) => setTrackingInput(e.target.value)}
-                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
               />
             </div>
             <button
@@ -343,5 +343,21 @@ export default function DeliveryStatusPage() {
         )}
       </div>
     </AuthLayout>
+  );
+}
+
+export default function DeliveryStatusPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen bg-gray-100 flex items-center justify-center">
+        <div className="text-center">
+          <div className="text-6xl mb-4">🚛</div>
+          <h1 className="text-2xl font-bold text-gray-900 mb-2">Loading...</h1>
+          <p className="text-gray-600">Please wait while we load the delivery status page.</p>
+        </div>
+      </div>
+    }>
+      <DeliveryStatusContent />
+    </Suspense>
   );
 }

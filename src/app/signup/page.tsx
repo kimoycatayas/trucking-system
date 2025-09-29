@@ -40,7 +40,7 @@ export default function SignupPage() {
       } else {
         setError('Email already exists');
       }
-    } catch (err) {
+    } catch {
       setError('An error occurred during signup');
     } finally {
       setIsLoading(false);

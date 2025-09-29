@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useData } from '@/contexts/DataContext';
-import { useAuth } from '@/contexts/AuthContext';
 import AuthLayout from '@/components/AuthLayout';
 import { Address } from '@/types';
 
@@ -11,7 +10,6 @@ export default function CreateDeliveryPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const { createDelivery } = useData();
-  const { user } = useAuth();
   const router = useRouter();
 
   const [formData, setFormData] = useState({
@@ -83,7 +81,7 @@ export default function CreateDeliveryPage() {
 
       const deliveryId = createDelivery(deliveryData);
       router.push(`/delivery-status?id=${deliveryId}`);
-    } catch (err) {
+    } catch {
       setError('Failed to create delivery. Please try again.');
     } finally {
       setIsLoading(false);
@@ -196,7 +194,7 @@ export default function CreateDeliveryPage() {
                     required
                     value={formData.destinationStreet}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="456 Oak Avenue"
                   />
                 </div>
@@ -210,7 +208,7 @@ export default function CreateDeliveryPage() {
                     required
                     value={formData.destinationCity}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="San Francisco"
                   />
                 </div>
@@ -224,7 +222,7 @@ export default function CreateDeliveryPage() {
                     required
                     value={formData.destinationState}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="CA"
                   />
                 </div>
@@ -238,7 +236,7 @@ export default function CreateDeliveryPage() {
                     required
                     value={formData.destinationZipCode}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="94102"
                   />
                 </div>
@@ -251,7 +249,7 @@ export default function CreateDeliveryPage() {
                     name="destinationCountry"
                     value={formData.destinationCountry}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="USA"
                   />
                 </div>
@@ -272,7 +270,7 @@ export default function CreateDeliveryPage() {
                     rows={3}
                     value={formData.cargoDescription}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="Electronics, furniture, etc."
                   />
                 </div>
@@ -288,7 +286,7 @@ export default function CreateDeliveryPage() {
                     step="0.1"
                     value={formData.cargoWeight}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="150"
                   />
                 </div>
@@ -302,7 +300,7 @@ export default function CreateDeliveryPage() {
                     required
                     value={formData.cargoDimensions}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="48&quot; x 40&quot; x 36&quot;"
                   />
                 </div>
@@ -323,7 +321,7 @@ export default function CreateDeliveryPage() {
                     required
                     value={formData.estimatedDelivery}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                   />
                 </div>
                 <div>
@@ -335,7 +333,7 @@ export default function CreateDeliveryPage() {
                     name="assignedDriver"
                     value={formData.assignedDriver}
                     onChange={handleInputChange}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-900"
                     placeholder="Driver name"
                   />
                 </div>

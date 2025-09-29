@@ -1,7 +1,7 @@
 'use client';
 
 import React, { createContext, useContext, useEffect, useState, ReactNode } from 'react';
-import { Delivery, Address } from '@/types';
+import { Delivery } from '@/types';
 import { mockDeliveries } from '@/data/mockData';
 
 interface DataContextType {
